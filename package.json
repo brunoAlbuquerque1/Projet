@@ -1,0 +1,30 @@
+{
+  "name": "projetojs",
+  "version": "1.0.0",
+  "description": "Estudando JS ES6",
+  "babel": {
+    "presets":["es2015"]
+  },
+  "main": "index.js",
+  "scripts": {
+    
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel": "babel index.js  --watch --out-file game.js"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunoAlbuquerque1/ProjetoJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brunoAlbuquerque1/ProjetoJS/issues"
+  },
+  "homepage": "https://github.com/brunoAlbuquerque1/ProjetoJS#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
