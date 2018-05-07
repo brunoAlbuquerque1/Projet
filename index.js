@@ -71,3 +71,59 @@ const update = function (modifier) {
   if (39 in keysDown) { // Pressionando a seta pra direita
     hero.x += hero.speed * modifier;
   }
+  // Os personagens se encostaram?
+  if (
+    hero.x <= (monster.x + 32)
+    && monster.x <= (hero.x + 32)
+    && hero.y <= (monster.y + 32)
+    && monster.y <= (hero.y + 32)
+  ) {
+    ++monstersCaught;
+    reset();
+  }
+};
+
+// Renderiza tudo
+const render = function () {
+  if (bgReady) {
+    ctx.drawImage(bgImage, 0, 0);
+  }
+
+  if (heroReady) {
+    ctx.drawImage(heroImage, hero.x, hero.y);
+  }
+
+  if (monsterReady) {
+    ctx.drawImage(monsterImage, monster.x, monster.y);
+  }
+
+  // Pontuação
+  ctx.fillStyle = 'rgb(250, 250, 250)';
+  ctx.font = '24px Helvetica';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillText('Pessoas salvas: ' + monstersCaught, 32, 32);
+};
+
+// Controla o loop do jogo
+const main = function () {
+  const now = Date.now(); 
+  const delta = now - then;
+
+  update(delta / 1000);
+  render();
+
+  then = now;
+
+  // Executa isso o mais breve possível
+  requestAnimationFrame(main);
+};
+
+// Suporte cross-browser para requestAnimationFrame
+const w = window;
+const requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
+
+// Que comece o jogo!
+let then = Date.now();
+reset();
+main();
